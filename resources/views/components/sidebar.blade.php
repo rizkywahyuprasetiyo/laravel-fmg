@@ -8,7 +8,7 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="{{ request()->is('home*') ? 'active' : '' }}"><a class="nav-link" href="blank.html"><i class="far fa-hdd"></i> <span>Drive Saya</span></a></li>
+            <li class="{{ request()->is('home*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('dashboard.home') }}"><i class="far fa-hdd"></i> <span>Drive Saya</span></a></li>
         </ul>
     </aside>
 </div>

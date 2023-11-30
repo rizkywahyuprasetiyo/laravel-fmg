@@ -33,6 +33,11 @@
                                     <label for="password" class="control-label">Password</label>
                                 </div>
                                 <input id="password" type="password" class="form-control" name="password" tabindex="2">
+                                @error('password')
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
 
                             <div class="form-group">

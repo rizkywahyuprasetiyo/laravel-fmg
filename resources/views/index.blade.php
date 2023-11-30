@@ -7,108 +7,68 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <form action="{{ route('file.simpan') }}" method="post" enctype="multipart/form-data">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary">Upload File</h6>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="card-body">
+                        @csrf
+                        <input type="file" name="path" id="path" multiple>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center gap-3">
                     <h4>Drive Saya</h4>
+                    <div>
+                        <a href="#" class="btn btn-primary"><i class="fas fa-folder-plus"></i> Folder</a>
+                        <a href="#" class="btn btn-success"><i class="fas fa-file-upload"></i> File</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-1">
                             <thead>
                                 <tr>
-                                    <th class="text-center">
-                                        #
-                                    </th>
-                                    <th>Task Name</th>
-                                    <th>Progress</th>
-                                    <th>Members</th>
-                                    <th>Due Date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Nama</th>
+                                    <th>Pemilik</th>
+                                    <th>Terakhir Diubah</th>
+                                    <th>Ukuran File</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($folders as $folder)
                                 <tr>
+                                    <td><a href="#"><i class="far fa-folder"></i> {{ $folder->nama }}</a></td>
+                                    <td>{{ $folder->user->name }}</td>
+                                    <td>{{ $folder->updated_at->diffForHumans() }}</td>
+                                    <td>__</td>
                                     <td>
-                                        1
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td class="align-middle">
-                                        <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                                            <div class="progress-bar bg-success" data-width="100%"></div>
+                                        <div class="d-flex align-items-center">
+                                            <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                                         </div>
                                     </td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>2018-01-20</td>
-                                    <td>
-                                        <div class="badge badge-success">Completed</div>
-                                    </td>
-                                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
                                 </tr>
+                                @endforeach
+                                @foreach($files as $file)
                                 <tr>
+                                    <td><a href="#"><i class="far fa-file"></i> {{ $file->nama }}</a></td>
+                                    <td>{{ $file->user->name }}</td>
+                                    <td>{{ $file->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $file->size }} byte</td>
                                     <td>
-                                        2
-                                    </td>
-                                    <td>Redesign homepage</td>
-                                    <td class="align-middle">
-                                        <div class="progress" data-height="4" data-toggle="tooltip" title="0%">
-                                            <div class="progress-bar" data-width="0"></div>
+                                        <div class="d-flex align-items-center">
+                                            <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                                         </div>
                                     </td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Nur Alpiana">
-                                        <img alt="image" src="../assets/img/avatar/avatar-3.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Hariono Yusup">
-                                        <img alt="image" src="../assets/img/avatar/avatar-4.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Bagus Dwi Cahya">
-                                    </td>
-                                    <td>2018-04-10</td>
-                                    <td>
-                                        <div class="badge badge-info">Todo</div>
-                                    </td>
-                                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        3
-                                    </td>
-                                    <td>Backup database</td>
-                                    <td class="align-middle">
-                                        <div class="progress" data-height="4" data-toggle="tooltip" title="70%">
-                                            <div class="progress-bar bg-warning" data-width="70%"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Rizal Fakhri">
-                                        <img alt="image" src="../assets/img/avatar/avatar-2.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Hasan Basri">
-                                    </td>
-                                    <td>2018-01-29</td>
-                                    <td>
-                                        <div class="badge badge-warning">In Progress</div>
-                                    </td>
-                                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>Input data</td>
-                                    <td class="align-middle">
-                                        <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                                            <div class="progress-bar bg-success" data-width="100%"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-2.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Rizal Fakhri">
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Isnap Kiswandi">
-                                        <img alt="image" src="../assets/img/avatar/avatar-4.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Yudi Nawawi">
-                                        <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Khaerul Anwar">
-                                    </td>
-                                    <td>2018-01-16</td>
-                                    <td>
-                                        <div class="badge badge-success">Completed</div>
-                                    </td>
-                                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -122,14 +82,75 @@
 @push('css-libraries')
 <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/select.bootstrap4.min.css') }}">
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ asset('css/iziToast.min.css') }}">
+@endpush
+
+@push('custom-css')
+<style>
+    svg {
+        vertical-align: baseline;
+    }
+</style>
 @endpush
 
 @push('js-libraries')
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('js/select.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('js/iziToast.min.js') }}"></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 @endpush
 
 @push('js-page')
 <script src="{{ asset('js/page/modules-datatables.js') }}"></script>
+<script>
+    // Register plugin
+    FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileValidateSize);
+    // Get a reference to the file input element
+    const inputElement = document.querySelector('input[id="path"]');
+
+    // Create a FilePond instance
+    const pond = FilePond.create(inputElement, {
+        labelIdle: 'Seret file ke sini atau klik tulisan ini',
+        // plugin validasi type file
+        acceptedFileTypes: ['application/pdf'],
+        labelFileTypeNotAllowed: 'Jenis file tidak didukung',
+        fileValidateTypeLabelExpectedTypes: 'Yang didukung {allButLastType} or {lastType}',
+        fileValidateTypeLabelExpectedTypesMap: {
+            'application/pdf': '.pdf'
+        },
+        // validasi ukuran file
+        maxFileSize: '200MB',
+        labelMaxFileSizeExceeded: 'File yang diupload terlalu besar',
+        labelMaxFileSize: 'Ukuran file yang diizinkan {filesize}'
+    });
+    FilePond.setOptions({
+        server: {
+            process: '{{ route('tmp.upload') }}',
+            revert: '{{ route('tmp.delete') }}',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }
+    });
+</script>
+<script>
+    @if(session()->has('success'))
+    iziToast.success({
+        title: 'Berhasil!',
+        message: '{{ session('success') }}',
+        position: 'topRight'
+    });
+    @endif
+    @if(session()->has('error'))
+    iziToast.error({
+        title: 'Gagal!',
+        message: '{{ session('error') }}',
+        position: 'topRight'
+    });
+    @endif
+</script>
 @endpush
