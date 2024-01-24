@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function index(Folder $folder, File $file)
     {
-        $parent = $folder->find(request('f'))?->folder_id;
+        $meta = $folder->find(request('f'));
 
         $folders = $folder
             ->when(request('f') != '', function ($query) {
@@ -28,17 +28,6 @@ class DashboardController extends Controller
             })
             ->orderBy('nama', 'asc')->get();
 
-
-        // if (request('f')) {
-        //     $folders = $folder->where('folder_id', request('f'))->orderBy('nama', 'asc')->get();
-        //     $files = $file->where('folder_id', request('f'))->orderBy('nama', 'asc')->get();
-        // }
-
-        // if (!request('f')) {
-        //     $folders = $folder->whereNull('folder_id')->orderBy('nama', 'asc')->get();
-        //     $files = $file->whereNull('folder_id')->orderBy('nama', 'asc')->get();
-        // }
-
-        return view('index', compact('folders', 'files', 'parent'));
+        return view('index', compact('folders', 'files', 'meta'));
     }
 }

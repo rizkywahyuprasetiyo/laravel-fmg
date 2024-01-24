@@ -7,7 +7,7 @@
     @if(request('f') != '')
     <div class="row">
         <div class="col-12">
-            <a href="{{ route('dashboard.home') . '?f=' . $parent }}" class="btn btn-secondary mb-3"><i class="fas fa-chevron-left"></i> Kembali</a>
+            <a href="{{ route('dashboard.home') . '?f=' . $meta?->folder_id }}" class="btn btn-secondary mb-3"><i class="fas fa-chevron-left"></i> Kembali</a>
         </div>
     </div>
     @endif
@@ -31,7 +31,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center gap-3">
-                    <h4>Drive Saya</h4>
+                    <h4><i class="far fa-folder"></i> {{ $meta->nama ?? 'Drive Saya' }}</h4>
                     <div>
                         <a href="{{ route('folder.tambah') . '?f=' . request('f') ?? '' }}" class="btn btn-primary"><i class="fas fa-folder-plus"></i> Folder</a>
                     </div>
