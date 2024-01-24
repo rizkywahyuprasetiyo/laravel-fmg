@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FolderController;
 use App\Http\Controllers\TemporaryFileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(TemporaryFileController::class)->name('tmp.')->group(function () {
         Route::post('/tmp/upload', 'upload')->name('upload');
         Route::delete('/tmp/delete', 'delete')->name('delete');
+    });
+
+    Route::controller(FolderController::class)->name('folder.')->group(function () {
+        Route::get('/folder/tambah', 'tambah')->name('tambah');
+        Route::post('/folder/simpan', 'simpan')->name('simpan');
     });
 
     Route::controller(FileController::class)->name('file.')->group(function () {

@@ -4,10 +4,17 @@
     <div class="section-header">
         <h1>Drive Saya</h1>
     </div>
+    @if(request('f') != '')
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ route('dashboard.home') . '?f=' . $parent }}" class="btn btn-secondary mb-3"><i class="fas fa-chevron-left"></i> Kembali</a>
+        </div>
+    </div>
+    @endif
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <form action="{{ route('file.simpan') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('file.simpan') . '?f=' . request('f') ?? null }}" method="post" enctype="multipart/form-data">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="text-primary">Upload File</h6>
                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -26,8 +33,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center gap-3">
                     <h4>Drive Saya</h4>
                     <div>
-                        <a href="#" class="btn btn-primary"><i class="fas fa-folder-plus"></i> Folder</a>
-                        <a href="#" class="btn btn-success"><i class="fas fa-file-upload"></i> File</a>
+                        <a href="{{ route('folder.tambah') . '?f=' . request('f') ?? '' }}" class="btn btn-primary"><i class="fas fa-folder-plus"></i> Folder</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -45,7 +51,7 @@
                             <tbody>
                                 @foreach($folders as $folder)
                                 <tr>
-                                    <td><a href="#"><i class="far fa-folder"></i> {{ $folder->nama }}</a></td>
+                                    <td><a href="{{ route('dashboard.home') . '?f=' . $folder->id }}"><i class="far fa-folder"></i> {{ $folder->nama }}</a></td>
                                     <td>{{ $folder->user->name }}</td>
                                     <td>{{ $folder->updated_at->diffForHumans() }}</td>
                                     <td>__</td>

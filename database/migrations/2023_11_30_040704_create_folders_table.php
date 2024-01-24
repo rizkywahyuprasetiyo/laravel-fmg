@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignUuid('folder_id')->nullable();
             $table->string('nama');
-            $table->string('path');
             $table->timestamps();
         });
     }
