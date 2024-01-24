@@ -62,9 +62,7 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <a class="dropdown-item" href="{{ route('folder.edit', $folder->id) }}"><i class="fas fa-pen"></i> Ubah Nama</a>
                                                     <div class="dropdown-divider"></div>
                                                     <form action="{{ route('folder.hapus', $folder->id) . '?f=' . request('f') ?? null }}" method="post" onsubmit="return confirm('Folder dan isinya akan dihapus. Lanjutkan?')">
                                                         @csrf

@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::controller(FolderController::class)->name('folder.')->group(function () {
         Route::get('/folder/tambah', 'tambah')->name('tambah');
         Route::post('/folder/simpan', 'simpan')->name('simpan');
+        Route::get('/folder/{folder}/edit', 'edit')->name('edit');
+        Route::patch('/folder/{folder}/edit', 'update')->name('update');
         Route::delete('/folder/{folder}/hapus', 'hapus')->name('hapus');
     });
 

@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\File;
-use App\Models\Folder;
+use App\Models\{File, Folder};
 use App\Http\Requests\FolderRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +23,20 @@ class FolderController extends Controller
         $folder->create($data);
 
         return redirect(route('dashboard.home') . '?f=' . request('f') ?? '');
+    }
+
+    public function edit(Folder $folder)
+    {
+        return view('folder.edit', compact('folder'));
+    }
+
+    public function update(Folder $folder, FolderRequest $folderRequest)
+    {
+        $data = $folderRequest->validated();
+
+        $folder->update($data);
+
+        return redirect(route('dashboard.home') . '?f=' . $folder->folder_id)->with('success', 'Folder berhasil diedit.');
     }
 
     public function hapus(Folder $folder, File $file)
