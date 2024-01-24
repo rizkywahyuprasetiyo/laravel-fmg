@@ -45,7 +45,7 @@
                                     <th>Pemilik</th>
                                     <th>Terakhir Diubah</th>
                                     <th>Ukuran File</th>
-                                    <th>Aksi</th>
+                                    <th width="1%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +57,22 @@
                                     <td>__</td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <form action="{{ route('folder.hapus', $folder->id) . '?f=' . request('f') ?? null }}" method="post" onsubmit="return confirm('Folder dan isinya akan dihapus. Lanjutkan?')">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="dropdown-item btn btn-danger px-4 rounded-0"><i class="fas fa-trash"></i> Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

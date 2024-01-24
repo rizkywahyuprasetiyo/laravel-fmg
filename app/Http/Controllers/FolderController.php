@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Folder;
 use App\Http\Requests\FolderRequest;
+use Illuminate\Support\Facades\Storage;
 
 class FolderController extends Controller
 {
@@ -22,5 +24,23 @@ class FolderController extends Controller
         $folder->create($data);
 
         return redirect(route('dashboard.home') . '?f=' . request('f') ?? '');
+    }
+
+    public function hapus(Folder $folder, File $file)
+    {
+        // hapus semua folder di dalam folder ini
+        $folder->where('folder_id', $folder->id)->delete();
+
+        // hapus semua fild di folder ini
+        $dataFile = $file->where('folder_id', $folder->id)->get();
+        foreach ($dataFile as $files) {
+            Storage::delete($files->path);
+            $files->delete();
+        }
+
+        // hapus foldernya
+        $folder->delete();
+
+        return back()->with('success', 'Folder berhasil dihapus.');
     }
 }

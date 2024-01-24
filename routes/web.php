@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(FolderController::class)->name('folder.')->group(function () {
         Route::get('/folder/tambah', 'tambah')->name('tambah');
         Route::post('/folder/simpan', 'simpan')->name('simpan');
+        Route::delete('/folder/{folder}/hapus', 'hapus')->name('hapus');
     });
 
     Route::controller(FileController::class)->name('file.')->group(function () {
