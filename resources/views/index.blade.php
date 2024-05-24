@@ -80,7 +80,7 @@
                                     <td><a href="#"><i class="far fa-file"></i> {{ $file->nama }}</a></td>
                                     <td>{{ $file->user->name }}</td>
                                     <td>{{ $file->updated_at->diffForHumans() }}</td>
-                                    <td>{{ $file->size }} byte</td>
+                                    <td>{{ Number::filesize($file->size, precision: 2) }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <a href="#" class="btn btn-sm btn-danger">Hapus</a>
